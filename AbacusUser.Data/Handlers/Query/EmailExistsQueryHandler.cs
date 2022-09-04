@@ -1,21 +1,15 @@
 ﻿using AbacusUser.Domain.Models.Users;
 
-namespace AbacusUser.Data.Handlers.Query
+namespace AbacusUser.Data.Handlers.Query;
+
+public class EmailExistsQueryHandler : MongoDbHandler<UserProfile>, IRequestHandler<EmailExistsQuery, Result<bool>>
 {
-    public class EmailExistsQueryHandler : IRequestHandler<EmailExistsQuery, Result<bool>>
+    public EmailExistsQueryHandler(IMongoDbContext dbContext) : base(dbContext) { }
+
+    public async Task<Result<bool>> Handle(EmailExistsQuery request, CancellationToken cancellationToken)
     {
-        private readonly IMongoDbContext<UserProfile> dbContext;
-
-        public EmailExistsQueryHandler(IMongoDbContext<UserProfile> dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
-        public async Task<Result<bool>> Handle(EmailExistsQuery request, CancellationToken cancellationToken)
-        {
-            if (string.IsNullOrEmpty(request.Email)) return new(false);
-            var exists = await dbContext.Query().AnyAsync(x => x.Email == request.Email.ToLower(), cancellationToken);
-            return new Result<bool>(exists);                  
-        }
+        if (string.IsNullOrEmpty(request.Email)) return new(false);
+        var exists = await Query.AnyAsync(x => x.Email == request.Email.ToLower(), cancellationToken);
+        return new Result<bool>(exists);                  
     }
 }
