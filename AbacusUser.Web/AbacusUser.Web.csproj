@@ -15,4 +15,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AbacusUser.Domain\AbacusUser.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

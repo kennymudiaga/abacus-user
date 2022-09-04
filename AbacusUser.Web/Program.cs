@@ -1,44 +1,33 @@
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
+using AbacusUser.Web;
+using AbacusUser.Web.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddControllers(options => options.Filters.Add<ExceptionFilter>())
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = RequestErrorHandler.HandleModelStateError;
+    });
+builder.Services.AddMvc(options =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AbacusUser.Web", Version = "v1" });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        In = ParameterLocation.Header,
-        Description = "Please enter the word 'Bearer', followed by space and JWT",
-        Name = "Authorization",
-        Scheme = "Bearer",
-        Type = SecuritySchemeType.ApiKey
-    });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                },
-                Scheme = "oauth2",
-                Name = "Bearer",
-                In = ParameterLocation.Header
-            },
-            new List<string>()
-        }
-    });
-    c.EnableAnnotations();
-    c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+    options.EnableEndpointRouting = false;
 });
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy => policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+});
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddLogging(config =>
+{
+    //TO DO: add app-insights
+    config.AddConsole();
+});
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.ConfigureSwagger();
+// Add custom services
+builder.Services.ConfigureServices();
 
 var app = builder.Build();
 
