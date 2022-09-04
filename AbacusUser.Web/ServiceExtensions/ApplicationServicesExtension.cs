@@ -1,5 +1,7 @@
 ﻿using AbacusUser.Data;
 using AbacusUser.Data.Handlers.Commands;
+using AbacusUser.Data.Handlers.Query;
+using AbacusUser.DataCommands;
 using AbacusUser.Domain.Models;
 using AbacusUser.Domain.Validators;
 using FluentValidation;
@@ -26,7 +28,7 @@ public static class ApplicationServicesExtension
         });
         services.AddScoped<IMongoDbContext, MongoDbContext>();
         services.AddScoped(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
-        services.AddMediatR(typeof(Program), typeof(SignupCommandHandler), typeof(DbEntity));
+        services.AddMediatR(typeof(Program), typeof(MongoDbConfig), typeof(CommandsMarker), typeof(DbEntity));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddValidatorsFromAssembly(typeof(DbEntity).Assembly);
         return services;
