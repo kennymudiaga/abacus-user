@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AbacusUser.DataCommands\AbacusUser.DataCommands.csproj" />
     <ProjectReference Include="..\AbacusUser.Data\AbacusUser.Data.csproj" />
     <ProjectReference Include="..\AbacusUser.Domain\AbacusUser.Domain.csproj" />
   </ItemGroup>
