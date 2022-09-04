@@ -27,7 +27,7 @@ builder.Services.AddLogging(config =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.ConfigureSwagger();
 // Add custom services
-builder.Services.ConfigureServices();
+builder.Services.ConfigureServices(builder.Configuration);
 
 var app = builder.Build();
 
