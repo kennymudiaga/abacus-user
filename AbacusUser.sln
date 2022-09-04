@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Web", "AbacusUse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Domain", "AbacusUser.Domain\AbacusUser.Domain.csproj", "{5767889A-2873-4E7D-A68C-A312DD1FAD9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Data", "AbacusUser.Data\AbacusUser.Data.csproj", "{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5767889A-2873-4E7D-A68C-A312DD1FAD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5767889A-2873-4E7D-A68C-A312DD1FAD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5767889A-2873-4E7D-A68C-A312DD1FAD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

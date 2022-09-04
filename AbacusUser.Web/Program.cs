@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options => options.Filters.Add<ExceptionFilter>())
     .ConfigureApiBehaviorOptions(options =>
     {
-        options.InvalidModelStateResponseFactory = RequestErrorHandler.HandleModelStateError;
+        options.InvalidModelStateResponseFactory = ResponseHandler.HandleModelStateError;
     });
 builder.Services.AddMvc(options =>
 {
