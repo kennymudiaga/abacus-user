@@ -1,14 +1,11 @@
-﻿using AbacusUser.Domain.Commands;
-using AbacusUser.Domain.Models;
-using AbacusUser.Domain.Models.Users;
-using MediatR;
+﻿using AbacusUser.Domain.Models.Users;
 
 namespace AbacusUser.Data.Handlers.Commands;
 
-public class SignupHandler : IRequestHandler<SignUpCommand, Result<UserProfile>>
+public class SignupCommandHandler : IRequestHandler<SignUpCommand, Result<UserProfile>>
 {
     private readonly IMongoDbContext<UserProfile> dbContext;
-    public SignupHandler(IMongoDbContext<UserProfile> dbContext)
+    public SignupCommandHandler(IMongoDbContext<UserProfile> dbContext)
     {
         this.dbContext = dbContext;
     }

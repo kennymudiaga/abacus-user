@@ -1,7 +1,4 @@
-﻿using AbacusUser.Domain.Models;
-using MongoDB.Driver;
-
-namespace AbacusUser.Data;
+﻿namespace AbacusUser.Data;
 
 public class MongoDbContext : IMongoDbContext
 {

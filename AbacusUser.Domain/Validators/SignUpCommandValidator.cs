@@ -12,7 +12,7 @@ public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
     {
         RuleLevelCascadeMode = CascadeMode.Stop;
         RuleFor(x => x.Username).NotEmpty().MaximumLength(50);       
-        RuleFor(x => x.Email).EmailAddress().MaximumLength(50)
+        RuleFor(x => x.Email).NotEmpty().EmailAddress().MaximumLength(50)
             .CustomAsync(async (email, context, cancelToken) =>
             {
                 var result = await mediator.Send(new EmailExistsQuery { Email = email }, cancelToken);

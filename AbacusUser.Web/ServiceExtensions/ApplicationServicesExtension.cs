@@ -26,7 +26,7 @@ public static class ApplicationServicesExtension
         });
         services.AddScoped<IMongoDbContext, MongoDbContext>();
         services.AddScoped(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
-        services.AddMediatR(typeof(Program), typeof(SignupHandler), typeof(DbEntity));
+        services.AddMediatR(typeof(Program), typeof(SignupCommandHandler), typeof(DbEntity));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddValidatorsFromAssembly(typeof(DbEntity).Assembly);
         return services;

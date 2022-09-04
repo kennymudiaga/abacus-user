@@ -1,9 +1,4 @@
-﻿using AbacusUser.Domain.Models;
-using AbacusUser.Domain.Models.Users;
-using AbacusUser.Domain.Queries;
-using MediatR;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
+﻿using AbacusUser.Domain.Models.Users;
 
 namespace AbacusUser.Data.Handlers.Query
 {
@@ -19,8 +14,8 @@ namespace AbacusUser.Data.Handlers.Query
         public async Task<Result<bool>> Handle(EmailExistsQuery request, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(request.Email)) return new(false);
-            var exists = await dbContext.Collection.AsQueryable().AnyAsync(x => x.Email == request.Email.ToLower(), cancellationToken);
-            return new(exists);                  
+            var exists = await dbContext.Query().AnyAsync(x => x.Email == request.Email.ToLower(), cancellationToken);
+            return new Result<bool>(exists);                  
         }
     }
 }
