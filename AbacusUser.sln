@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Web", "AbacusUser.Web\AbacusUser.Web.csproj", "{B8FF124A-F715-4AD6-A812-3EA781200B19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbacusUser.Web", "AbacusUser.Web\AbacusUser.Web.csproj", "{B8FF124A-F715-4AD6-A812-3EA781200B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Domain", "AbacusUser.Domain\AbacusUser.Domain.csproj", "{5767889A-2873-4E7D-A68C-A312DD1FAD9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbacusUser.Domain", "AbacusUser.Domain\AbacusUser.Domain.csproj", "{5767889A-2873-4E7D-A68C-A312DD1FAD9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Data", "AbacusUser.Data\AbacusUser.Data.csproj", "{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbacusUser.Data", "AbacusUser.Data\AbacusUser.Data.csproj", "{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{E8EF62FE-58FB-456B-90E1-F0721FE089D0}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
