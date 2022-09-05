@@ -7,14 +7,19 @@ public class UserProfile : DbEntity
     /// <summary>
     /// Protected constructor for Db tools (Mongo or EF)
     /// </summary>
-    protected UserProfile() : base() { }
+    protected UserProfile() : base() 
+    {
+        Email = string.Empty;
+    }
+
     public UserProfile(SignUpCommand model)
     {
         FirstName = model.FirstName?.Trim().ToLower();
         LastName = model.LastName?.Trim().ToLower();
-        Email = model.Email?.Trim().ToLower();
+        if (string.IsNullOrEmpty(Email))
+            throw new ArgumentException("Email cannot be empty!");
+        Email = model.Email!.Trim().ToLower();
         OtherNames = model.OtherNames?.Trim().ToLower();
-        Username = model.Username?.Trim()?.ToLower();
         Phone = model.Phone;
         DateCreated = DateTime.UtcNow;
         DateOfBirth = model.DateOfBirth.GetValueOrDefault().Date;
@@ -23,10 +28,9 @@ public class UserProfile : DbEntity
     }
     public string? FirstName { get; protected set; }
     public string? LastName { get; protected set; }
-    public string? Username { get; protected set; }
     public string? PasswordHash { get; protected set; }
     public string? OtherNames { get; protected set; }
-    public string? Email { get; protected set; }
+    public string Email { get; protected set; }
     public string? Phone { get; protected set; }
     public List<UserOrg>? UserOrgs { get; protected set; }
     public int AccessFailedCount { get; set; }
@@ -48,7 +52,7 @@ public class UserProfile : DbEntity
     public string GeneratePasswordToken(DateTime expiry)
     {
         var token = new Random().Next(100001, 1000000).ToString();
-        PasswordToken = SaltToken(Username, token);
+        PasswordToken = SaltToken(Email, token);
         PasswordTokenExpiry = expiry;
         return token;
     }
@@ -86,9 +90,9 @@ public class UserProfile : DbEntity
         UserOrgs.Remove(org);
     }
 
-    public string SaltToken(string token) => SaltToken(Username, token);
+    public string SaltToken(string token) => SaltToken(Email, token);
 
-    public static string SaltToken(string? username, string token)
+    private static string SaltToken(string? username, string token)
     {
         return $"{username}|{token}";
     }

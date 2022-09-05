@@ -11,7 +11,6 @@ public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
     public SignUpCommandValidator(IMediator mediator)
     {
         RuleLevelCascadeMode = CascadeMode.Stop;
-        RuleFor(x => x.Username).NotEmpty().MaximumLength(50);       
         RuleFor(x => x.Email).NotEmpty().EmailAddress().MaximumLength(50)
             .CustomAsync(async (email, context, cancelToken) =>
             {
@@ -22,6 +21,7 @@ public class SignUpCommandValidator : AbstractValidator<SignUpCommand>
                 }
             });
         RuleFor(x => x.Password).NotEmpty().MaximumLength(50);
+        RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("Passwords do not match.");
         RuleFor(x => x.FirstName).NotEmpty().MaximumLength(50);
         RuleFor(x => x.LastName).NotEmpty().MaximumLength(50);
         RuleFor(x => x.OtherNames).MaximumLength(50);

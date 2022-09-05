@@ -4,6 +4,7 @@ using AbacusUser.Domain.Models;
 using AbacusUser.Domain.Validators;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver;
 
 namespace AbacusUser.Web.ServiceExtensions;
@@ -28,6 +29,7 @@ public static class ApplicationServicesExtension
         services.AddMediatR(typeof(Program), typeof(SignupCommandHandler), typeof(DbEntity));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddValidatorsFromAssembly(typeof(DbEntity).Assembly);
+        services.AddScoped<IPasswordHasher<string>, PasswordHasher<string>>();
         return services;
     }
 }
