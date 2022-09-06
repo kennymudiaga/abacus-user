@@ -49,18 +49,17 @@ public class UserProfile : DbEntity
 
     public DateTime DateOfBirth { get; set; }
 
-    public string GeneratePasswordToken(DateTime expiry)
+    public void GeneratePasswordToken(DateTime expiry)
     {
-        var token = new Random().Next(100001, 1000000).ToString();
-        PasswordToken = SaltToken(Email, token);
+        PasswordToken = new Random().Next(100001, 1000000).ToString();
         PasswordTokenExpiry = expiry;
-        return token;
     }
 
     public bool IsPasswordTokenExpired() =>
         (!string.IsNullOrEmpty(PasswordToken)) &&
         PasswordTokenExpiry.HasValue &&
         DateTime.UtcNow > PasswordTokenExpiry;
+
     public void SetPassword(string passwordHash)
     {
         PasswordHash = passwordHash;
