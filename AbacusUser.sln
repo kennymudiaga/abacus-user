@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{E8EF62
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusUser.Infrastructure", "AbacusUser.Infrastructure\AbacusUser.Infrastructure.csproj", "{B2F9868F-55FE-48BE-A2DC-FE7EF0AA5BC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{566CCC9F-2C0B-47A2-8338-AB1FEBF9AB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F9868F-55FE-48BE-A2DC-FE7EF0AA5BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F9868F-55FE-48BE-A2DC-FE7EF0AA5BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F9868F-55FE-48BE-A2DC-FE7EF0AA5BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F9868F-55FE-48BE-A2DC-FE7EF0AA5BC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

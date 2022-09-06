@@ -1,7 +1,9 @@
 ﻿using AbacusUser.Data;
 using AbacusUser.Data.Handlers.Commands;
+using AbacusUser.Domain.Contracts;
 using AbacusUser.Domain.Models;
 using AbacusUser.Domain.Validators;
+using AbacusUser.Infrastructure;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +32,7 @@ public static class ApplicationServicesExtension
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddValidatorsFromAssembly(typeof(DbEntity).Assembly);
         services.AddScoped<IPasswordHasher<string>, PasswordHasher<string>>();
+        services.AddScoped<IPasswordService, PasswordService>();
         return services;
     }
 }
